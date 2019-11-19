@@ -1,3 +1,4 @@
-const {uno, dos} = { uno: 1, dos: 2 };
-console.log(uno);
-console.log(dos);
+let a = 1;
+let b = 2;
+[b,a] = [a,b];
+console.log(a, b);
