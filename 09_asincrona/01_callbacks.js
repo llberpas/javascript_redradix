@@ -1,6 +1,6 @@
 const rand = n => Math.round(n * Math.random());
-const coin = () => rand(1) > 1;
-const rarely = () => rand(7) > 7;
+const coin = () => rand(2) > 1;
+const rarely = () => rand(10) > 7;
 
 function fail(test, reason) {
   return test() ? new Error(`Error: ${reason}`) : null;
