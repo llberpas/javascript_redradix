@@ -1,25 +1,18 @@
 const fetch = require('node-fetch');
 const URL = 'https://swapi.co/api/people/'
 
-let people = []
-
-function getCharacter(n) {
-  return fetch(URL + n)
-    .then(res => res.json())
-    .then(data => {
-      people.push(data)
-    })
+let URLs = []
+for (let i = 1; i < 6; i++) {
+  URLs.push(URL + i)
 }
 
-const p = Promise.all([
-  getCharacter(1),
-  getCharacter(2),
-  getCharacter(3),
-  getCharacter(4),
-  getCharacter(5)
-])
+function getData(url) {
+  return fetch(url).then(res => res.json())
+}
 
+const p = Promise.all(URLs.map(getData))
 
-p
-  .then(() => console.log(people.map(person => person.name)))
-  .then(() => console.log(people.reduce((acc, x) => acc += parseInt(x.height), 0) / people.length))
+p.then((result) => {
+  console.log(result.map(person => person.name))
+  console.log(result.reduce((acc, x) => acc += parseInt(x.height), 0) / 5)
+})
